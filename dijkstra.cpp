@@ -13,6 +13,7 @@ void dijkstra(vector<pair<int,int>>adj[],int cost[],int s,int v){
      auto t=pq.top();
      int c= t.first;
      int u=t.second;
+     pq.pop();
 
      for(auto it : adj[u]){
         int v=it.first;
@@ -20,6 +21,7 @@ void dijkstra(vector<pair<int,int>>adj[],int cost[],int s,int v){
 
         if(cost[u]+weight<cost[v]){
             cost[v]=cost[u]+weight;
+            pq.push({cost[v],v});
         }
 
      }
@@ -53,4 +55,8 @@ int main(){
    }
    cost[s]=0;
    dijkstra(adj,cost,s,v);
+   cout<<"min cost";
+   for(int i=1;i<v;i++){
+    cout<<i<<"  "<< cost[i]<<endl;
+   }
 }
